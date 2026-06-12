@@ -1,0 +1,266 @@
+@import "tailwindcss";
+
+:root {
+  /* Crystalline daylight canvas — clean, with a cool tint */
+  --bg: #f4f7f5;
+  --bg-soft: #eef2ef;
+  --ink: #0b2218;
+  --ink-soft: #3c4b43;
+  --ink-mute: #79857e;
+
+  /* Brand greens */
+  --brand-50: #ecfdf5;
+  --brand-100: #d1fae5;
+  --brand-200: #a7f3d0;
+  --brand-300: #6ee7b7;
+  --brand-400: #34d399;
+  --brand-500: #10b981;
+  --brand-600: #059669;
+  --brand-700: #047857;
+  --brand-800: #065f46;
+  --brand-900: #06241a;
+  --brand-950: #04140e;
+
+  --accent: #c9f24d; /* electric lime spark */
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-soft: var(--bg-soft);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-mute: var(--ink-mute);
+  --color-brand-50: var(--brand-50);
+  --color-brand-100: var(--brand-100);
+  --color-brand-200: var(--brand-200);
+  --color-brand-300: var(--brand-300);
+  --color-brand-400: var(--brand-400);
+  --color-brand-500: var(--brand-500);
+  --color-brand-600: var(--brand-600);
+  --color-brand-700: var(--brand-700);
+  --color-brand-800: var(--brand-800);
+  --color-brand-900: var(--brand-900);
+  --color-brand-950: var(--brand-950);
+  --color-accent: var(--accent);
+  --font-display: var(--font-display);
+  --font-sans: var(--font-sans);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans), -apple-system, BlinkMacSystemFont, 'PingFang SC',
+    'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* page-wide flowing ambient light — continuous visual stream between modules */
+.flowlight {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(60% 40% at 82% 6%, rgba(52, 211, 153, 0.16), transparent 60%),
+    radial-gradient(50% 38% at 8% 40%, rgba(125, 211, 252, 0.1), transparent 60%),
+    radial-gradient(55% 40% at 92% 70%, rgba(110, 231, 183, 0.12), transparent 62%),
+    radial-gradient(60% 45% at 20% 96%, rgba(52, 211, 153, 0.1), transparent 60%);
+}
+
+/* faint pixel-dot lattice over the whole page (≈1.5% ink) */
+.pagedots {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: radial-gradient(rgba(11, 34, 24, 0.04) 1px, transparent 1px);
+  background-size: 30px 30px;
+  -webkit-mask-image: linear-gradient(to bottom, black, black);
+}
+
+.font-display {
+  font-family: var(--font-display), var(--font-sans), sans-serif;
+}
+
+/* ---------- Entrance animations ---------- */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.rise { animation: rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+@keyframes blur-in {
+  from { opacity: 0; filter: blur(14px); transform: translateY(10px); }
+  to { opacity: 1; filter: blur(0); transform: translateY(0); }
+}
+.blur-in { animation: blur-in 1s cubic-bezier(0.16, 1, 0.3, 1) both; }
+
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-18px, 22px) scale(1.06); }
+}
+.drift { animation: drift 14s ease-in-out infinite; }
+
+/* breathing core */
+@keyframes breathe {
+  0%, 100% { transform: scale(1); opacity: 0.9; }
+  50% { transform: scale(1.06); opacity: 1; }
+}
+.breathe { animation: breathe 5s ease-in-out infinite; }
+
+/* sonar ripple rings */
+@keyframes sonar {
+  0% { transform: scale(0.35); opacity: 0.55; }
+  80% { opacity: 0; }
+  100% { transform: scale(1.9); opacity: 0; }
+}
+.sonar-ring {
+  animation: sonar 4.5s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+}
+
+/* slow rotation for orbital systems */
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+.spin-slow { animation: spin-slow 60s linear infinite; }
+.spin-slower { animation: spin-slow 90s linear infinite reverse; }
+
+/* breathing glow for the live CTA dot */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.5); }
+  50% { box-shadow: 0 0 0 5px rgba(16, 185, 129, 0); }
+}
+.glow-pulse { animation: glow-pulse 2.4s ease-in-out infinite; }
+
+/* reveal-on-scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+/* ---------- Decorative ---------- */
+.text-gradient {
+  background: linear-gradient(105deg, var(--brand-700), var(--brand-400) 55%, var(--brand-300));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ambient depth: daylight top-left -> cool teal/lime glow bottom-right */
+.ambient {
+  background:
+    radial-gradient(80% 60% at 12% 0%, rgba(255, 255, 255, 0.9), transparent 60%),
+    radial-gradient(70% 70% at 100% 100%, rgba(52, 211, 153, 0.16), transparent 55%),
+    radial-gradient(50% 50% at 88% 18%, rgba(201, 242, 77, 0.1), transparent 60%);
+}
+
+.grain {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0.22;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+/* precision engineering grid — dashed coordinate lattice */
+.enggrid {
+  background-image:
+    linear-gradient(to right, rgba(11, 34, 24, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(11, 34, 24, 0.05) 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(circle at 50% 40%, black, transparent 78%);
+  mask-image: radial-gradient(circle at 50% 40%, black, transparent 78%);
+}
+
+.dotgrid {
+  background-image: radial-gradient(rgba(6, 95, 70, 0.07) 1px, transparent 1px);
+  background-size: 26px 26px;
+}
+
+/* crystal / frosted glass surface */
+.glass {
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.72), rgba(255, 255, 255, 0.4));
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.7);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.8) inset,
+    0 30px 60px -30px rgba(6, 36, 26, 0.18);
+}
+
+.glass-soft {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(12px) saturate(130%);
+  -webkit-backdrop-filter: blur(12px) saturate(130%);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+
+/* 1px lime-glow edge capsule */
+.glow-edge {
+  position: relative;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  box-shadow: 0 0 0 1px rgba(16, 185, 129, 0.06), 0 8px 30px -12px rgba(16, 185, 129, 0.25);
+}
+
+/* crystal card — light surface with inner border + diffuse soft shadow */
+.crystal {
+  position: relative;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(14px) saturate(130%);
+  -webkit-backdrop-filter: blur(14px) saturate(130%);
+  border: 1px solid rgba(255, 255, 255, 0.75);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 2px 6px -3px rgba(6, 36, 26, 0.04),
+    0 30px 70px -34px rgba(6, 36, 26, 0.16);
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.crystal::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border: 1px solid rgba(16, 185, 129, 0.07);
+  pointer-events: none;
+}
+.crystal:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 40px 90px -30px rgba(16, 185, 129, 0.28);
+}
+
+/* glossy gradient glass icon tile */
+.glass-icon {
+  background: linear-gradient(140deg, rgba(255, 255, 255, 0.95), rgba(209, 250, 229, 0.7));
+  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    0 12px 26px -14px rgba(16, 185, 129, 0.5);
+}
+
+.hairline {
+  border-color: rgba(11, 34, 24, 0.1);
+}
+
+::selection {
+  background: var(--brand-300);
+  color: var(--brand-950);
+}

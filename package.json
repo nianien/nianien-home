@@ -1,0 +1,40 @@
+{
+  "name": "nianien-home",
+  "version": "1.0.0",
+  "description": "念音科技 (Nianien Technology) official website",
+  "private": true,
+  "author": "Nianien Technology",
+  "license": "MIT",
+  "homepage": "https://www.nianien.com",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "build:export": "NEXT_EXPORT=true next build",
+    "start": "next start",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf .next out",
+    "export": "NEXT_EXPORT=true next build",
+    "deploy": "NEXT_EXPORT=true next build && gh-pages -d out -t true"
+  },
+  "dependencies": {
+    "next": "^15.5.14",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "15.3.5",
+    "gh-pages": "^6.3.0",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
