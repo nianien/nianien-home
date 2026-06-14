@@ -15,7 +15,7 @@
     "type-check": "tsc --noEmit",
     "clean": "rm -rf .next out",
     "export": "NEXT_EXPORT=true next build",
-    "deploy": "NEXT_EXPORT=true next build && gh-pages -d out -t true"
+    "deploy": "NEXT_EXPORT=true next build && gh-pages -d out -t"
   },
   "dependencies": {
     "next": "^15.5.14",

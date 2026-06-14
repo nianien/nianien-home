@@ -11,6 +11,7 @@ export default function Header() {
 
   const nav = [
     { href: '#business', label: t.nav.business },
+    { href: '#product', label: t.nav.product },
     { href: '#about', label: t.nav.about },
   ];
 

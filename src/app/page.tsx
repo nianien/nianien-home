@@ -15,6 +15,7 @@ export default function Home() {
       <Header />
       <main id="top" className="relative z-[2]">
         <Business />
+        <Product />
         <About />
       </main>
       <SiteFooter />
@@ -28,6 +29,16 @@ function Business() {
   return (
     <section id="business" className="relative scroll-mt-24 pb-28 pt-32 sm:pb-36 sm:pt-36">
       <div className="mx-auto max-w-[1240px] px-5 sm:px-8">
+        <Reveal className="mb-16 flex flex-col items-center text-center">
+          <h2 className="font-display text-[clamp(2.2rem,5.5vw,3.8rem)] font-extrabold leading-tight tracking-tight text-ink">
+            {t.business.intro.split('，')[0]}，
+            <span className="text-gradient">{t.business.intro.split('，')[1]}</span>
+          </h2>
+          <p className="mt-5 text-[clamp(1rem,2vw,1.25rem)] font-medium tracking-wide text-ink-soft">
+            {t.business.subtitle}
+          </p>
+          <span className="mt-12 h-px w-full max-w-3xl bg-gradient-to-r from-transparent via-[rgba(11,34,24,0.16)] to-transparent" />
+        </Reveal>
         <div className="grid gap-5 lg:auto-rows-fr lg:grid-cols-6">
           {t.business.items.map((b, i) => {
             const feature = i === 0;
@@ -79,6 +90,63 @@ function Business() {
   );
 }
 
+/* ============================ PRODUCT — Pikppo showcase ============================ */
+function Product() {
+  const { t } = useLang();
+  const p = t.product;
+  return (
+    <section id="product" className="relative scroll-mt-24 pb-20 pt-8 sm:pb-24 sm:pt-10">
+      <div className="mx-auto max-w-[1240px] px-5 sm:px-8">
+        <Reveal>
+          <div className="relative grid gap-10 overflow-hidden rounded-3xl border border-brand-200/70 bg-gradient-to-br from-brand-50 via-white to-brand-100/50 p-8 shadow-[0_16px_50px_-30px_rgba(16,185,129,0.5)] sm:p-12 lg:grid-cols-[1fr_0.92fr] lg:items-center lg:gap-16">
+            <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(52,211,153,0.16),transparent_70%)]" />
+
+            {/* left: product intro */}
+            <div className="relative">
+              <span className="inline-flex items-center gap-2 rounded-full border border-brand-300/60 bg-white/70 px-3.5 py-1 text-xs font-medium text-brand-700">
+                <span className="h-1.5 w-1.5 rounded-full bg-brand-500" />
+                {p.title}
+              </span>
+              <div className="mt-5 font-display text-[clamp(2.6rem,6vw,4rem)] font-extrabold leading-none tracking-tight text-gradient">
+                {p.name}
+              </div>
+              <p className="mt-4 font-display text-2xl font-bold text-ink">{p.tagline}</p>
+              <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-ink-soft">{p.desc}</p>
+              <a
+                href={p.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group mt-8 inline-flex items-center gap-2 rounded-full bg-brand-600 px-6 py-3 text-sm font-semibold text-white shadow-[0_14px_30px_-12px_rgba(5,150,105,0.7)] transition-all hover:bg-brand-700 hover:-translate-y-0.5"
+              >
+                {p.cta}
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                  <path d="M7 17L17 7M7 7h10v10" />
+                </svg>
+              </a>
+            </div>
+
+            {/* right: feature list */}
+            <div className="relative space-y-4">
+              {p.features.map((f) => (
+                <div
+                  key={f.name}
+                  className="rounded-2xl border border-brand-200/60 bg-white/70 p-5 backdrop-blur-sm transition-colors hover:border-brand-300"
+                >
+                  <div className="flex items-center gap-2.5 font-display text-[15px] font-bold text-ink">
+                    <span className="h-2 w-2 rounded-sm bg-gradient-to-br from-brand-400 to-brand-600" />
+                    {f.name}
+                  </div>
+                  <p className="mt-2 pl-[18px] text-[13.5px] leading-relaxed text-ink-soft">{f.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
 /* ============================ ABOUT — heading + plain statement ============================ */
 function About() {
   const { t } = useLang();
@@ -125,11 +193,9 @@ function SiteFooter() {
                 <dd>
                   <a
                     href={`mailto:${t.contact.email}`}
-                    className="group inline-flex items-center text-ink-soft"
+                    className="inline-flex items-center text-ink-soft transition-colors hover:text-brand-700"
                   >
-                    <span className="border-b border-brand-400/60 pb-0.5 transition-colors group-hover:border-brand-600">
-                      {t.contact.email}
-                    </span>
+                    {t.contact.email}
                   </a>
                 </dd>
               </div>

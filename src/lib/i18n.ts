@@ -3,13 +3,16 @@ export type Lang = 'zh';
 export const dict = {
   zh: {
     nav: {
-      business: '业务介绍',
+      business: '业务',
+      product: '产品',
       about: '关于我们',
       contact: '联系我们',
     },
     tagline: '念念不忘，必有回音',
     business: {
-      title: '业务方向',
+      title: '业务',
+      intro: '念念不忘，必有回音',
+      subtitle: '只为让 AI 更懂你',
       items: [
         {
           name: '私人助理',
@@ -37,6 +40,19 @@ export const dict = {
           tags: ['进度跟踪', '查漏补缺', '知识沉淀'],
         },
       ],
+    },
+    product: {
+      title: '产品',
+      name: 'Pikppo',
+      tagline: '你的私人 AI 管家',
+      desc: '念音在“私人助理”方向的首款产品。以长期记忆为核心，让每一次对话都能被延续和回应；采用本地优先架构，把数据和记忆都留在你自己手里。',
+      features: [
+        { name: '本地优先架构', desc: '模型可在用户设备端运行，无需把数据交给云端。' },
+        { name: '多角色形态', desc: '每个角色拥有独立的记忆与性格，互不干扰。' },
+        { name: '端到端加密', desc: '长期记忆加密存储，任何人无法读取，包括我们。' },
+      ],
+      cta: '访问 pikppo.com',
+      url: 'https://pikppo.com',
     },
     about: {
       title: '关于我们',
