@@ -30,12 +30,12 @@ function Business() {
     <section id="business" className="relative scroll-mt-24 pb-28 pt-32 sm:pb-36 sm:pt-36">
       <div className="mx-auto max-w-[1240px] px-5 sm:px-8">
         <Reveal className="mb-16 flex flex-col items-center text-center">
-          <h2 className="font-display text-[clamp(2.2rem,5.5vw,3.8rem)] font-extrabold leading-tight tracking-tight text-ink">
-            {t.business.intro.split('，')[0]}，
-            <span className="text-gradient">{t.business.intro.split('，')[1]}</span>
-          </h2>
+          <h1 className="font-display text-[clamp(2.2rem,5.5vw,3.8rem)] font-extrabold leading-tight tracking-tight text-ink">
+            {t.hero.lead}
+            <span className="text-gradient">{t.hero.accent}</span>
+          </h1>
           <p className="mt-5 text-[clamp(1rem,2vw,1.25rem)] font-medium tracking-wide text-ink-soft">
-            {t.business.subtitle}
+            {t.hero.subtitle}
           </p>
           <span className="mt-12 h-px w-full max-w-3xl bg-gradient-to-r from-transparent via-[rgba(11,34,24,0.16)] to-transparent" />
         </Reveal>
@@ -211,7 +211,7 @@ function SiteFooter() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/wechat-qr.png"
-              alt="念音科技微信公众号二维码"
+              alt={`${SITE.nameZh} · ${t.contact.wechat}`}
               width={108}
               height={108}
               className="h-[108px] w-[108px] rounded-xl border border-[rgba(11,34,24,0.1)] bg-white p-2 shadow-[0_8px_24px_-12px_rgba(11,34,24,0.2)]"

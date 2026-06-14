@@ -6,8 +6,9 @@ import { Logo } from './Logo';
 import { SITE } from '@/lib/site';
 
 export default function Header() {
-  const { t } = useLang();
+  const { t, lang, setLang } = useLang();
   const [open, setOpen] = useState(false);
+  const toggleLang = () => setLang(lang === 'zh' ? 'en' : 'zh');
 
   const nav = [
     { href: '#business', label: t.nav.business },
@@ -45,6 +46,18 @@ export default function Header() {
             ))}
           </nav>
 
+          <button
+            onClick={toggleLang}
+            className="hidden h-8 items-center gap-1.5 rounded-full border border-[rgba(11,34,24,0.12)] px-3 text-[13px] font-semibold text-ink-soft transition-colors hover:border-brand-300 hover:text-brand-700 sm:inline-flex"
+            aria-label="Switch language"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M3 12h18M12 3c2.5 2.5 2.5 15 0 18M12 3c-2.5 2.5-2.5 15 0 18" />
+            </svg>
+            {t.langLabel}
+          </button>
+
           <a
             href="#contact"
             className="group hidden items-center gap-2 rounded-full bg-brand-600 px-5 py-2.5 text-[13px] font-semibold text-white transition-all hover:bg-brand-700 sm:inline-flex"
@@ -78,6 +91,15 @@ export default function Header() {
               {n.label}
             </a>
           ))}
+          <button
+            onClick={() => {
+              toggleLang();
+              setOpen(false);
+            }}
+            className="mt-1 block w-full rounded-xl px-3 py-2.5 text-left text-sm font-semibold text-brand-700 hover:bg-white/60"
+          >
+            {t.langLabel}
+          </button>
         </nav>
       )}
     </header>
