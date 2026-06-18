@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { Bricolage_Grotesque, Plus_Jakarta_Sans } from 'next/font/google';
+import { Bricolage_Grotesque, Plus_Jakarta_Sans, Noto_Serif_SC } from 'next/font/google';
 import './globals.css';
 import { SITE } from '@/lib/site';
 import { LanguageProvider } from '@/components/LanguageProvider';
@@ -15,6 +15,14 @@ const sans = Plus_Jakarta_Sans({
   subsets: ['latin'],
   variable: '--font-sans',
   display: 'swap',
+});
+
+const serifSC = Noto_Serif_SC({
+  subsets: ['latin'],
+  variable: '--font-serif-sc',
+  display: 'swap',
+  weight: ['400', '500'],
+  preload: false,
 });
 
 export const metadata: Metadata = {
@@ -63,7 +71,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="zh-CN">
-      <body className={`${display.variable} ${sans.variable}`}>
+      <body className={`${display.variable} ${sans.variable} ${serifSC.variable}`}>
         <LanguageProvider>{children}</LanguageProvider>
       </body>
     </html>

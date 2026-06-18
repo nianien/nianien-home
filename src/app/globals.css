@@ -93,6 +93,12 @@ body {
   font-family: var(--font-display), var(--font-sans), sans-serif;
 }
 
+/* Chinese serif for editorial statements — elegant, not the blunt gothic fallback */
+.font-serif-zh {
+  font-family: var(--font-display), var(--font-serif-sc), 'Songti SC', 'STSong',
+    'Source Han Serif SC', 'Noto Serif CJK SC', 'SimSun', Georgia, serif;
+}
+
 /* ---------- Entrance animations ---------- */
 @keyframes rise {
   from { opacity: 0; transform: translateY(22px); }

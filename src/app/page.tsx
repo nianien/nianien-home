@@ -147,22 +147,40 @@ function Product() {
   );
 }
 
-/* ============================ ABOUT — heading + plain statement ============================ */
+/* ============================ ABOUT — editorial two-column statement ============================ */
 function About() {
   const { t } = useLang();
+  const a = t.about;
   return (
-    <section id="about" className="relative scroll-mt-24 py-20 sm:py-24">
+    <section id="about" className="relative scroll-mt-24 py-24 sm:py-28">
       <div className="mx-auto max-w-[1240px] px-5 sm:px-8">
-        <Reveal>
-          <h2 className="font-display text-[clamp(1.9rem,3.6vw,2.6rem)] font-bold tracking-tight text-ink">
-            {t.about.title}
-          </h2>
-        </Reveal>
-        <Reveal delay={100}>
-          <p className="mt-7 max-w-[40ch] text-[clamp(1.05rem,1.7vw,1.35rem)] font-normal leading-[1.8] text-ink-soft">
-            {t.about.body}
-          </p>
-        </Reveal>
+        <div className="grid gap-12 lg:grid-cols-[minmax(0,0.78fr)_minmax(0,1fr)] lg:gap-20">
+          {/* left: brand statement — the one line worth remembering */}
+          <Reveal>
+            <div className="lg:sticky lg:top-28">
+              <span className="text-xs font-medium uppercase tracking-[0.24em] text-brand-600/80">
+                {a.eyebrow}
+              </span>
+              <p className="mt-7 font-serif-zh text-[clamp(1.8rem,3.2vw,2.6rem)] font-normal leading-[1.45] tracking-tight text-ink">
+                {a.lead}
+              </p>
+              <p className="mt-2.5 font-serif-zh text-[clamp(1.8rem,3.2vw,2.6rem)] font-normal leading-[1.45] tracking-tight text-ink/45">
+                {a.leadAccent}
+              </p>
+            </div>
+          </Reveal>
+
+          {/* right: company description — constrained to a comfortable reading measure */}
+          <div className="max-w-[33rem] space-y-6 lg:pt-1.5">
+            {a.body.map((para, i) => (
+              <Reveal key={i} delay={120 + i * 80}>
+                <p className="text-[clamp(0.98rem,1.15vw,1.075rem)] font-normal leading-[1.85] text-ink-soft">
+                  {para}
+                </p>
+              </Reveal>
+            ))}
+          </div>
+        </div>
       </div>
     </section>
   );
